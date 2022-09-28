@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 09:16:59 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/27 14:56:10 by aucousin         ###   ########.fr       */
+/*   Created: 2022/05/31 11:32:18 by aucousin          #+#    #+#             */
+/*   Updated: 2022/05/31 11:34:27 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strcpy(char *dest, char *src)
 {
-	char	*join;
 	int		i;
 
-	if (!s1 && !s2)
-		return (NULL);
-	else if (!s1)
-		return ((char *)s2);
-	else if (!s2)
-		return ((char *)s1);
 	i = 0;
-	join = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!join)
-		return (NULL);
-	while (*s1)
+	while (src[i])
 	{
-		join[i++] = *s1;
-		s1++;
+		dest[i] = src[i];
+		i++;
 	}
-	while (*s2)
-	{
-		join[i++] = *s2;
-		s2++;
-	}
-	join[i] = '\0';
-	return (join);
+	dest[i] = '\0';
+	return (dest);
 }

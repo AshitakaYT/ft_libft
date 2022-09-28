@@ -1,46 +1,43 @@
-SRCS		=	ft_atoi.c		ft_isdigit.c	ft_memmove.c \
-				ft_split.c		ft_strlcpy.c	ft_strstr.c \
-				ft_bzero.c		ft_isprint.c	ft_memset.c \
-				ft_strchr.c		ft_strlen.c		ft_strtrim.c \
-				ft_calloc.c		ft_itoa.c		ft_putchar_fd.c \
-				ft_strdup.c		ft_strmapi.c	ft_substr.c \
-				ft_isalnum.c	ft_memchr.c		ft_putendl_fd.c \
-				ft_striteri.c	ft_strncmp.c	ft_tolower.c \
-				ft_isalpha.c	ft_memcmp.c		ft_putnbr_fd.c \
-				ft_strjoin.c	ft_strnstr.c	ft_toupper.c \
-				ft_isascii.c	ft_memcpy.c		ft_putstr_fd.c \
-				ft_strlcat.c	ft_strrchr.c	ft_strcpy.c \
-				ft_strncpy.c
+SRC			=	is/ft_isalnum.c	is/ft_isalpha.c	is/ft_isascii.c	is/ft_isdigit.c	is/ft_isprint.c \
+				lst/ft_lstadd_back.c	lst/ft_lstadd_front.c	lst/ft_lstclear.c	lst/ft_lstdelone.c	lst/ft_lstiter.c	lst/ft_lstlast.c	lst/ft_lstmap.c	lst/ft_lstnew.c	lst/ft_lstsize.c \
+				mem/ft_bzero.c	mem/ft_calloc.c	mem/ft_memchr.c	mem/ft_memcmp.c	mem/ft_memcpy.c	mem/ft_memmove.c	mem/ft_memset.c \
+				print/ft_putchar_fd.c	print/ft_putendl_fd.c	print/ft_putnbr_fd.c	print/ft_putstr_fd.c \
+				str/ft_atoi.c	str/ft_itoa.c	str/ft_split.c	str/ft_strchr.c	str/ft_strcpy.c	str/ft_strdup.c	str/ft_striteri.c	str/ft_strjoin.c	str/ft_strlcat.c	str/ft_strlcpy.c	str/ft_strlen.c	str/ft_strmapi.c	str/ft_strncmp.c	str/ft_strncpy.c	str/ft_strnstr.c	str/ft_strrchr.c	str/ft_strstr.c	str/ft_strtrim.c	str/ft_substr.c	str/ft_tolower.c	str/ft_toupper.c
 
-SRCS_BONUS	=	ft_lstadd_back.c	ft_lstclear.c	ft_lstiter.c \
-				ft_lstmap.c			ft_lstsize.c	ft_lstadd_front.c \
-				ft_lstdelone.c		ft_lstlast.c	ft_lstnew.c
+HEADERS		=	hdrs/libft.h
 
-HEADERS		= libft.h
-
-OBJS		= ${SRCS:.c=.o}
-
-OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
+OBJ			= 	${SRC:.c=.o}
+OBJSDIR		=	objs/
 
 NAME		= libft.a
-
 CC			= gcc
-
+CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror
+NONE		='\033[0m'
+BLU			='\033[0;34m'
+RED			='\033[0;31m'
+GREEN		='\033[32m'
+GRAY		='\033[2;37m'
+CURSIVE		='\033[3m'
 
-%.o : %.c	${HEADERS} Makefile
-			${CC} ${CFLAGS} -c $< -o $@
+OBJS		= $(addprefix $(OBJSDIR), $(OBJ))
 
 all:		${NAME}
 
-${NAME}:	${OBJS} ${HEADERS}
-			ar rc ${NAME} ${OBJS}
+$(OBJSDIR)%.o : %.c		Makefile
+	@mkdir -p $(OBJSDIR)
+	@mkdir -p $(OBJSDIR)is
+	@mkdir -p $(OBJSDIR)lst
+	@mkdir -p $(OBJSDIR)mem
+	@mkdir -p $(OBJSDIR)print
+	@mkdir -p $(OBJSDIR)str
+	@gcc $(CFLAGS) -c $< -o $@
+	@echo $(CURSIVE)$(GRAY) "     - creating .o ..." $(NONE)
 
-
-bonus:		${OBJS} ${OBJS_BONUS} ${HEADERS}
-			ar rc ${NAME} ${OBJS} ${OBJS_BONUS}
+${NAME}: ${OBJS}
+	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(NONE)
+	@ar rc ${NAME} ${OBJS}
 
 clean:
 			${RM} ${OBJS} ${OBJS_BONUS}

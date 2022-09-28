@@ -12,7 +12,7 @@ OBJSDIR		=	objs/
 NAME		= libft.a
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-RM			= rm -f
+RM			= rm -rf
 
 NONE		='\033[0m'
 BLU			='\033[0;34m'
@@ -40,7 +40,8 @@ ${NAME}: ${OBJS}
 	@ar rc ${NAME} ${OBJS}
 
 clean:
-			${RM} ${OBJS} ${OBJS_BONUS}
+			${RM} ${OBJS}
+			${RM} ${OBJSDIR}
 
 fclean:		clean
 			${RM} ${NAME}

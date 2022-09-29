@@ -6,17 +6,23 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 20:19:19 by aucousin          #+#    #+#             */
-/*   Updated: 2022/05/31 12:03:34 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/29 19:10:46 by aucousin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define  BUFFER_SIZE 2048
+# endif
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <limits.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -71,5 +77,37 @@ t_list			*ft_lstnew(void *content);
 int				ft_lstsize(t_list *lst);
 char			*ft_strcpy(char *dest, char *src);
 char			*ft_strncpy(char *dest, char *src, unsigned int n);
+
+char			*ft_strchr(char *s, int c);
+int				ft_strlen(char const *str);
+char			*get_next_line(int fd);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+
+int				ft_putchar_printf(char c);
+int				ft_putstr_printf(char *str);
+int				ft_is_once_in_base(char *base, char c);
+int				ft_check_base(char *base);
+int				ft_printf(const char *str, ...);
+int				ft_convert_base(unsigned long long nbr, char *base, int bytes);
+int				ft_pnb_printf(int nbr, char *base, int bytes);
+int				ft_pnbu(unsigned int nbr, char *base, int bytes);
+int				ft_putnbrbase_ptr_printf(long long nbr, char *base, int bytes);
+int				ft_putptr_printf(long long p);
+int				ft_call_right_function(char c, va_list ap);
+int				ft_is_variable(char c);
+int				ft_printf(const char *str, ...);
+
+int				ft_putchar_dprintf(int fd, char c);
+int				ft_putstr_dprintf(int fd, char *str);
+int				ft_call_right_function_dprintf(char c, va_list ap, int fd);
+int				ft_dprintf(int fd, const char *str, ...);
+int				ft_pnb_dprintf(int nbr, char *base, int bytes, int fd);
+int				ft_pnbu_dprintf(unsigned int nbr,
+					char *base, int bytes, int fd);
+int				ft_putnbrbase_ptr_dprintf(long long nbr,
+					char *base, int bytes, int fd);
+int				ft_convert_base_dprintf(unsigned long long nbr,
+					char *base, int bytes, int fd);
+int				ft_putptr_dprintf(long long p, int fd);
 
 #endif
